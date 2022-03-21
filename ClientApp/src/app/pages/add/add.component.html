@@ -1,0 +1,86 @@
+<div>
+  <h2></h2>
+  <!-- <form [formGroup]="weatherForm" (ngSubmit)="addOrUpdateWeather()">
+    <div class="form-group">
+      <label for="date-input">Weather date:</label>
+      <input
+        type="date"
+        formControlName="tempDate"
+        [(ngModel)]="weather.tempDate"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': submitted && registerFormControl.tempDate.errors
+        }"
+      />
+      <div
+        *ngIf="registerFormControl.tempDate.errors"
+        class="alert alert-danger"
+      >
+        <div *ngIf="registerFormControl.tempDate.errors?.required">
+          Date is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="distance-input">Temperature</label>
+        <input
+          type="number"
+          formControlName="temperature"
+          [(ngModel)]="weather.temperature"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && registerFormControl.temperature.errors
+          }"
+        />
+        <span
+          class="text-danger"
+          *ngIf="registerFormControl?.temperature?.errors"
+        >
+          <div *ngIf="registerFormControl.temperature.errors?.required">
+            Enter temperature
+          </div>
+        </span>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary mr-1">Save</button>
+      </div>
+    </div>
+  </form> -->
+  <div class="container">
+  <form  [formGroup]="weatherForm" class="form-container" (ngSubmit)="addWeather()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{title}} Temperature</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+       
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput readonly [matDatepicker]="picker" placeholder="Temp Date"  formControlName="tempDate"
+              [(ngModel)]="weather.tempDate" >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="errorHandling('tempDate', 'required') && !submitted">
+                You must provide a<strong> Date</strong>
+             </mat-error>
+            </mat-form-field>
+     
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput formcontrolname="temperature" placeholder="Temperature"  [(ngModel)]="weather.temperature" [ngModelOptions]="{standalone: true}"
+              required 
+             >
+             <mat-error *ngIf="errorHandling('temperature', 'required') && !submitted">
+              <span *ngIf="weatherForm.controls.temperature.errors">Please enter<strong> Temperature</strong></span>
+           </mat-error>
+            </mat-form-field>
+  
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button="" color="primary">Add</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
+  <div *ngIf="submitted">
+    <h1>Weather data submitted successfully!</h1>
+  </div>
+</div>
+ 

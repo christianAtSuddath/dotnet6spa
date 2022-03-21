@@ -1,0 +1,34 @@
+<h1 id="tableLabel">Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weatherDataList">
+  <thead>
+    <tr>
+      <!-- <th>ID</th> -->
+      <th>Date</th>
+      <th>Temp. (F)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let weatherData of convertToJSON(weatherDataList)">
+      <!-- <td>{{ weatherData.id }}</td> -->
+      <td>{{ weatherData.tempDate }}</td>
+      <td>{{ weatherData.temperature }}</td>
+      <td>
+        <td>  
+          <a (click)="UpdateWeather(weatherData)">Edit</a> 
+      </td>  
+      
+    </tr>
+  </tbody>
+</table>
+<div class="col-md-6">
+<ng-template #editForm let-c="close" let-d="dismiss">
+  <app-update
+    [viewMode]="true"
+    [currentWeatherInfo]="editWeather"
+    *ngIf="editWeather !== null"
+  ></app-update>
+</ng-template>
+</div>

@@ -2,23 +2,21 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<a href="#" id="new-button">Add</a>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="weatherDataList">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Date</th>
-      <th>Temp. (C)</th>
       <th>Temp. (F)</th>
-      <th>Summary</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let weather of weatherDataList">
+      <td>{{ weather.Id }}</td>
+      <td>{{ weather.temperature }}</td>
+      <td>{{ weather.tempDate }}</td>
     </tr>
   </tbody>
 </table>
